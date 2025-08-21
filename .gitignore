@@ -16,3 +16,4 @@ ansible/.vaultpass
 
 #Misc
 .DS_Store
+terraform/*.tfplan

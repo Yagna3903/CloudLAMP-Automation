@@ -1,0 +1,18 @@
+<?php
+$host = "127.0.0.1";
+$db   = "demoapp";
+$user = "demo_user";
+$pass = "demo_pass";
+
+$conn = new mysqli($host, $user, $pass, $db);
+if ($conn->connect_error) {
+  die("DB Connection failed: " . $conn->connect_error);
+}
+$conn->query("CREATE TABLE IF NOT EXISTS visits (id INT AUTO_INCREMENT PRIMARY KEY, ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP)");
+$conn->query("INSERT INTO visits () VALUES ()");
+
+$result = $conn->query("SELECT COUNT(*) as c FROM visits");
+$row = $result->fetch_assoc();
+echo "<h2>LAMP Demo</h2>";
+echo "<p>Total visits recorded: <strong>{$row['c']}</strong></p>";
+?>

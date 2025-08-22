@@ -1,0 +1,17 @@
+- name: Ensure app directory exists
+  file:
+    path: /var/www/html/app
+    state: directory
+    owner: www-data
+    group: www-data
+    mode: '0755'
+  become: yes
+
+- name: Deploy index.php
+  template:
+    src: index.php.j2
+    dest: /var/www/html/app/index.php
+    owner: www-data
+    group: www-data
+    mode: '0655'
+  become: yes

@@ -1,0 +1,25 @@
+- name: Install Apache
+  apt:
+    name: apache2
+    state: present
+  become: yes
+
+- name: Enable and start Apache
+  service:
+    name: apache2
+    state: started
+    enabled: yes
+  become: yes
+
+- name: Ensure mod_rewrite enabled
+  command: a2enmod rewrite
+  args: { creates: /etc/apache2/mods-enabled/rewrite.load }
+  notify: Reload Apache
+  become: yes
+
+- name: Deploy vhost
+  template:
+    src: vhost.conf.j2
+    dest: /etc/apache2/sites-available/000-default.conf
+  notify: Reload Apache
+  become: yes

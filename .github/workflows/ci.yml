@@ -1,1 +1,28 @@
 name: CI Checks
+on:
+  push:
+  pull_request:
+
+jobs:
+  terraform:
+    name: Terraform fmt & validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+      - run: terraform fmt -check
+      - run: terraform validate
+
+  ansible-lint:
+    name: Ansible lint
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y python3-pip ansible
+          pip3 install ansible-lint
+          ansible-lint ansible

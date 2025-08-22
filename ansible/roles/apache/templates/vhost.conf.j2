@@ -1,0 +1,9 @@
+<VirtualHost *:80>
+  DocumentRoot /var/www/html/app
+  <Directory /var/www/html/app>
+    AllowOverride All
+    Require all granted
+  </Directory>
+  ErrorLog ${APACHE_LOG_DIR}/lamp-error.log
+  CustomLog ${APACHE_LOG_DIR}/lamp-access.log combined
+</VirtualHost>

@@ -1,0 +1,15 @@
+- name: Setup LAMP stack on EC2
+  hosts: lamp
+  become: yes
+  handlers:
+    - name: Reload Apache
+      service:
+        name: apache2
+        state: reloaded
+  roles:
+    - common
+    - firewall
+    - apache
+    - php
+    - mysql
+    - app

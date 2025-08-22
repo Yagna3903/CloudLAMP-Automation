@@ -23,6 +23,5 @@ jobs:
       - uses: actions/checkout@v4
       - run: |
           sudo apt-get update
-          sudo apt-get install -y python3-pip ansible
-          pip3 install ansible-lint
-          ansible-lint ansible/playbooks/setup-lamp.yml
+          pip install ansible ansible-lint
+          ansible-lint -p -R ansible/playbooks/setup-lamp.yml -c ansible/.ansible-lint

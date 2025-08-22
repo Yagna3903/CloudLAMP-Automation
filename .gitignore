@@ -17,3 +17,26 @@ ansible/.vaultpass
 #Misc
 .DS_Store
 terraform/*.tfplan
+
+#Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+env/
+
+#Logs
+*.log
+logs/
+
+#App build
+app/node_modules/
+app/dist/
+app/build/
+
+#Docs auto-generated files
+docs/_build/
+
+#Inventory overrides
+ansible/inventory/*.ini
+ansible/inventory/*.yml

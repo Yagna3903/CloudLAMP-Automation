@@ -1,4 +1,5 @@
 name: CI Checks
+
 on:
   push:
   pull_request:
@@ -13,7 +14,8 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - uses: hashicorp/setup-terraform@v3
-      - run: terraform fmt -check
+      - run: terraform fmt -recursive
+      - run: terraform init
       - run: terraform validate
 
   ansible-lint:
@@ -24,4 +26,4 @@ jobs:
       - run: |
           sudo apt-get update
           pip install ansible ansible-lint
-          ansible-lint -p -R ansible/playbooks/setup-lamp.yml -c ansible/.ansible-lint
+          ansible-lint ansible/

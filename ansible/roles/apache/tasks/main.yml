@@ -5,22 +5,22 @@
   ansible.builtin.apt:
     name: apache2
     state: present
-    update_cache: yes   # ensures apt cache is refreshed before install
-  become: yes
+    update_cache: true
+  become: true
 
 - name: Enable and start Apache service
   ansible.builtin.service:
     name: apache2
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true
 
 - name: Ensure mod_rewrite is enabled
   ansible.builtin.command: a2enmod rewrite
   args:
     creates: /etc/apache2/mods-enabled/rewrite.load
   notify: Reload Apache
-  become: yes
+  become: true
 
 - name: Deploy Apache vhost configuration
   ansible.builtin.template:
@@ -30,4 +30,4 @@
     group: root
     mode: '0644'
   notify: Reload Apache
-  become: yes
+  become: true

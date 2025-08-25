@@ -1,11 +1,11 @@
 - name: Update apt cache
-  apt:
+  ansible.builtin.apt:
     update_cache: true
     cache_valid_time: 3600
   become: true
 
 - name: Install base packages
-  apt:
+  ansible.builtin.apt:
     name:
       - curl
       - unzip

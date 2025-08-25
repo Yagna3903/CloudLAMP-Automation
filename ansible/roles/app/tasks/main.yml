@@ -5,7 +5,7 @@
     owner: www-data
     group: www-data
     mode: '0755'
-  become: yes
+  become: true
 
 - name: Deploy index.php
   template:
@@ -14,4 +14,4 @@
     owner: www-data
     group: www-data
     mode: '0655'
-  become: yes
+  become: true

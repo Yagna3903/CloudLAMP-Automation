@@ -34,5 +34,5 @@ Terraform -> AWS resources -> Ansible configuration -> PHP app -> User browser
 
 ## 2) Diagram
 
-### See [docs/architecture-diagram.png](docs/architecture-diagram.png)
+### See [docs/architecture-diagram.png](architecture-diagram.png)
 

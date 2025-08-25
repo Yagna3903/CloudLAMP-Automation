@@ -8,29 +8,29 @@
   ufw:
     rule: allow
     name: OpenSSH
-  become: yes
+  become: true
 
 - name: Allow HTTP
   ufw:
     rule: allow
     port: '80'
     proto: tcp
-  become: yes
+  become: true
 
 - name: Enable UFW
   ufw:
     state: enabled
-  become: yes
+  become: true
 
 - name: Install fail2ban
   apt:
     name: fail2ban
     state: present
-  become: yes
+  become: true
 
 - name: Ensure fail2ban is enabled and running
   service:
     name: fail2ban
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true

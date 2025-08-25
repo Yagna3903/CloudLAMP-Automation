@@ -1,5 +1,5 @@
 - name: Ensure app directory exists
-  file:
+  ansible.builtin.file:
     path: /var/www/html/app
     state: directory
     owner: www-data
@@ -8,7 +8,7 @@
   become: true
 
 - name: Deploy index.php
-  template:
+  ansible.builtin.template:
     src: index.php.j2
     dest: /var/www/html/app/index.php
     owner: www-data

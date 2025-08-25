@@ -14,7 +14,7 @@
 - GitHub Actions (CI), UFW firewall (and Fail2ban)
 
 ## How to run (quick)
-See `docs/setup-guide.md`.
+See [`docs/setup-guide.md`](setup-guide.md).
 
 ## Next steps
 - RDS MySQL, Let’s Encrypt HTTPS, CloudWatch agent

@@ -1,4 +1,7 @@
+---
+# handlers file for apache
+
 - name: Reload Apache
-  ansible.builtin.service
+  ansible.builtin.service:
     name: apache2
     state: reloaded

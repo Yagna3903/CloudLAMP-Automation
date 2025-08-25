@@ -1,35 +1,35 @@
 - name: Install ufw
-  apt:
+  ansible.builtin.apt:
     name: ufw
     state: present
   become: true
 
 - name: Allow OpenSSH
-  ufw:
+  community.general.ufw:
     rule: allow
     name: OpenSSH
   become: true
 
 - name: Allow HTTP
-  ufw:
+  community.general.ufw:
     rule: allow
     port: '80'
     proto: tcp
   become: true
 
 - name: Enable UFW
-  ufw:
+  community.general.ufw:
     state: enabled
   become: true
 
 - name: Install fail2ban
-  apt:
+  ansible.builtin.apt:
     name: fail2ban
     state: present
   become: true
 
 - name: Ensure fail2ban is enabled and running
-  service:
+  ansible.builtin.service:
     name: fail2ban
     state: started
     enabled: true

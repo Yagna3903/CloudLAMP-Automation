@@ -1,10 +1,14 @@
+---
+# tasks file for mysql
+
 - name: Install MySQL server
   ansible.builtin.apt:
     name: mysql-server
     state: present
+    update_cache: true
   become: true
 
-- name: Start MySQL
+- name: Ensure MySQL is started and enabled
   ansible.builtin.service:
     name: mysql
     state: started
@@ -12,11 +16,15 @@
   become: true
 
 - name: Create demo DB
-  ansible.builtin.shell: mysql -uroot -e "CREATE DATABASE IF NOT EXISTS demoapp;"
+  community.mysql.mysql_db:
+    name: demo
+    state: present
   become: true
 
 - name: Create demo DB user
-  ansible.builtin.shell: |
-    mysql -uroot -e "CREATE USER IF NOT EXISTS 'demo_user'@'%' IDENTIFIED BY 'demo_pass';"
-    mysql -uroot -e "GRANT ALL PRIVILEGES ON demoapp.* TO 'demo_user'@'%'; FLUSH PRIVILEGES;"
+  community.mysql.mysql_user:
+    name: demo_user
+    password: demo_pass
+    priv: "demo.*:ALL"
+    state: present
   become: true

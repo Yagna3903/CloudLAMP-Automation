@@ -9,4 +9,4 @@
       - php-xml
       - php-mbstring
     state: present
-  become: yes
+  become: true

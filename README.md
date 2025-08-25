@@ -30,7 +30,7 @@ Terraform provisions -> AWS EC2 + SG + EIP
 Ansible configures -> Apache + MySQL + PHP  
 App deployed -> Accessible via Elastic IP.  
 
-![Architecture Diagram](docs/architecture.png)
+![Architecture Diagram](docs/architecture-diagram.png)
 
 ### More details in [docs/architecture.md](docs/architecture.md).  
 

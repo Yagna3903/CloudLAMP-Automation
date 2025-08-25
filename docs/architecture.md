@@ -1,54 +1,38 @@
-# Architecture Overview
+# CloudLAMP-Automation - Architecture
 
-This document explains the architecture and workflow of the **CloudLAMP-Automation** project.  
-The project demonstrates how to provision **cloud infrastructure** with Terraform, configure it with **Ansible**, and deploy a **PHP application** on AWS.
-
----
-
-## 🏗️ High-Level Flow
-
-1. **Terraform** provisions infrastructure:
-   - AWS EC2 instance
-   - Security Group
-   - Elastic IP
-
-2. **Ansible** configures the EC2 instance:
-   - Installs Apache, MySQL, and PHP (LAMP stack)
-   - Configures firewall and common dependencies
-   - Deploys the sample PHP application
-
-3. **Application Deployment**:
-   - The PHP application (`index.php`) is copied to the Apache web directory
-   - Accessible via the Elastic IP assigned by Terraform
+This document explains how the project provisions **AWS infrastructure** with **Terraform**, configures it with **Ansible**, and serves a **PHP app** (LAMP stack).
 
 ---
 
-## 📐 Architecture Diagram
+## 1) High-Level Flow
 
-![Architecture Diagram](architecture-diagram.png)
+Terraform -> AWS resources -> Ansible configuration -> PHP app -> User browser
+
+1. **Terraform**
+   - Files: `terraform/main.tf`, `variables.tf`, `provider.tf`, `plan.tfplan`
+   - Provisions:
+     - EC2 instance (Ubuntu)
+     - Security Group (HTTP/80, SSH/22 from your IP)
+     - Elastic IP (EIP) and association
+
+2. **Ansible**
+   - Inventory: `ansible/inventories/aws/hosts.ini`
+   - Playbook: `ansible/playbooks/setup-lamp.yml`
+   - Roles:
+     - `common` – packages, updates, users
+     - `firewall` – ufw rules (optional if using only SG)
+     - `apache` – installs/enables Apache, vhost config
+     - `mysql` – installs MySQL server, secures basics
+     - `php` – installs PHP + extensions
+     - `app` – deploys sample `index.php`
+
+3. **Application**
+   - App deployed to `/var/www/html/`
+   - Reached via the **Elastic IP** in your browser
 
 ---
 
-## 🔑 Key Design Decisions
+## 2) Diagram
 
-- **Separation of Concerns**:  
-  - Terraform handles *infrastructure provisioning*  
-  - Ansible handles *configuration management*  
-  - This reflects real-world DevOps practices.
+### See [docs/architecture-diagram.png](docs/architecture-diagram.drawio).
 
-- **Idempotency**:  
-  - Ansible ensures re-runs are safe and do not duplicate configurations.
-
-- **Modular Roles**:  
-  - Each Ansible role (Apache, MySQL, PHP, Firewall, App) is self-contained and reusable.
-
-- **Scalability**:  
-  - Infrastructure can be extended to multi-tier (Load Balancer, RDS, Auto-scaling).
-
----
-
-## 🚀 Workflow Summary
-
-**Terraform → AWS Infra → Ansible Config → PHP App → User Browser**
-
-This setup makes it easy to spin up a reproducible LAMP environment in the cloud, showcasing both Infrastructure as Code and Configuration Management in action.

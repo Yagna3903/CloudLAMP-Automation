@@ -2,21 +2,21 @@
   apt:
     name: mysql-server
     state: present
-  become: yes
+  become: true
 
 - name: Start MySQL
   service:
     name: mysql
     state: started
-    enabled: yes
-  become: yes
+    enabled: true
+  become: true
 
 - name: Create demo DB
   shell: mysql -uroot -e "CREATE DATABASE IF NOT EXISTS demoapp;"
-  become: yes
+  become: true
 
 - name: Create demo DB user
   shell: |
     mysql -uroot -e "CREATE USER IF NOT EXISTS 'demo_user'@'%' IDENTIFIED BY 'demo_pass';"
     mysql -uroot -e "GRANT ALL PRIVILEGES ON demoapp.* TO 'demo_user'@'%'; FLUSH PRIVILEGES;"
-  become: yes
+  become: true

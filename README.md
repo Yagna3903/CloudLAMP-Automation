@@ -56,18 +56,3 @@ ansible-playbook -i inventory.ini playbook.yml
 ## Full guide → [docs/setup-guide.md](docs/setup-guide.md)
 
 ---
-
-## 📸 Screenshots
-- ✅ GitHub Actions pipeline green
-- 🌐 App running on Elastic IP
-
-### See [docs/screenshots.md](docs/screenshots.md)
-
----
-
-## 🎯 Why This Project?
-- Shows real-world DevOps workflow: Infra + Config + App + CI.
-- Built as a resume-ready project to showcase Cloud/DevOps skills.
-- Extensible: add monitoring, CI/CD auto-deploy, or multi-tier scaling.
-
----

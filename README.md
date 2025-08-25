@@ -1,6 +1,6 @@
 # CloudLAMP Automation 🚀 
 [![CI](https://github.com/Yagna3903/CloudLAMP-Automation/actions/workflows/ci.yml/badge.svg)](https://github.com/Yagna3903/CloudLAMP-Automation/actions)  
-![Terraform](https://img.shields.io/badge/Terraform-v1.x-623CE4?logo=terraform)  
+![Terraform](https://img.shields.io/badge/Terraform-v1.12.0-623CE4?logo=terraform)  
 ![Ansible](https://img.shields.io/badge/Ansible-automation-red?logo=ansible)  
 ![AWS](https://img.shields.io/badge/AWS-EC2-orange?logo=amazon-aws)
 

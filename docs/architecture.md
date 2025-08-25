@@ -36,3 +36,33 @@ Terraform -> AWS resources -> Ansible configuration -> PHP app -> User browser
 
 ### See [docs/architecture-diagram.png](architecture-diagram.png)
 
+Terraform (code) -> AWS (EC2 + SG + EIP) -> Ansible roles (LAMP) -> PHP app -> User
+---
+
+## 3) Design Principles
+
+- **Separation of concerns**: Terraform = infra, Ansible = config.
+- **Idempotency**: Re-running Ansible is safe; Terraform keeps state.
+- **Modularity**: Small, focused Ansible roles; reusable for other hosts.
+- **Security first**: SG restricts ports; optional UFW; SSH via key.
+- **Reproducible**: One command each to *create*, *configure*, *destroy*.
+
+---
+
+## 4) Runbook (TL;DR)
+
+```bash
+# Terraform
+cd terraform
+terraform init
+terraform apply -auto-approve
+
+# Ansible
+cd ../ansible
+ansible-playbook -i inventories/aws/hosts.ini playbooks/setup-lamp.yml
+Open the Elastic IP in your browser.
+
+Destroy when done:
+
+cd terraform
+terraform destroy -auto-approve
